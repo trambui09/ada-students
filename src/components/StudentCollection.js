@@ -15,6 +15,7 @@ const StudentCollection = (props) => {
           present={student.present}
           id={student.id}
           onUpdateStudent={props.onUpdateStudent}
+          onDeleteStudent={props.onDeleteStudent}
         />
       </li>
     );

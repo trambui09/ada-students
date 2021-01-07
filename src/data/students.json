@@ -13,10 +13,9 @@
       "present": true
     },
     {
-      "id": 3,
-      "fullName": "Katherine Johnson",
-      "email": "KJonhnson@nasa.gov",
-      "present": false
+      "fullName": "Tram Bui",
+      "email": "bui@yahoo.com",
+      "id": 3
     }
   ]
 }

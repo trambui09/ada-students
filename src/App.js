@@ -66,10 +66,36 @@ const App = () => {
       });
   }
 
+  
+
+  const deleteStudent = (studentId) => {
+    // need to make a new student list and filter 
+    const newStudentList = studentList.filter((student) => {
+      return student.id !== studentId;
+    })
+
+    // if the new list length is less than current list length, delete 
+
+    if (newStudentList.length < studentList.length) {
+
+      axios.delete(`${API_URL_BASE}/${studentId}`)
+      .then((response) => {
+        setErrorMessage(`Student ${studentId} deleted`);
+      })
+      .catch((error) => {
+        setErrorMessage(`Unable to delete student ${studentId} `);
+      });
+
+      setStudentList(newStudentList)
+    }
+
+    // change our student List AND tell axios to delete the student from our API via id
+  }
+
   return (
     <div className="App">
       {errorMessage ? <div><h2 className="error-msg">{errorMessage}</h2></div> : ''}
-      <StudentCollection students={studentList} onUpdateStudent={updateStudent} />
+      <StudentCollection students={studentList} onUpdateStudent={updateStudent} onDeleteStudent={deleteStudent} />
       <NewStudentForm addStudentCallback={addStudent} />
     </div>
   );

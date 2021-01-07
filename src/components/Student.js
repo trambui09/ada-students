@@ -28,11 +28,22 @@ const Student = (props) => {
     });
   };
 
+  const onDeleteButton = () => {
+    props.onDeleteStudent(props.id)
+
+  }
+
   // Component functions always return JSX
   return (
     <div className="student">
       <h3 className={props.present ? 'present' : 'absent'}>{props.fullName}</h3>
       <input value={props.fullName} onChange={onFullNameInputChange} />
+      <button
+        onClick={() => props.onDeleteStudent(props.id)}
+        className="delete-btn"
+      >
+        Delete
+      </button>
       <ul>
         <li>Class: C13</li>
         <li>Birthday: {props.birthday}</li>
@@ -40,7 +51,7 @@ const Student = (props) => {
       </ul>
       <button onClick={onButtonClick}>
         Mark {props.present ? 'Absent' : 'Present'}
-      </button>
+      </button>      
     </div>
   );
 };
@@ -50,10 +61,12 @@ Student.propTypes = {
   email: PropTypes.string,
   birthday: PropTypes.string,
   onUpdateStudent: PropTypes.func.isRequired,
+  onDeleteStudent: PropTypes.func.isRequired
 };
 
 Student.defaultProps = {
   birthday: 'no birthdate on file',
+  present: 'absent'
 }
 
 export default Student;
